@@ -8,15 +8,21 @@ import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpUtil;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.util.concurrent.*;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
@@ -56,9 +62,58 @@ public class HttpOutboundHandler {
     
     public void handle(final FullHttpRequest fullRequest, final ChannelHandlerContext ctx) {
         final String url = this.backendUrl + fullRequest.uri();
-        proxyService.submit(()->fetchGet(fullRequest, ctx, url));
+//        proxyService.submit(()->fetchGet(fullRequest, ctx, url));
+        proxyService.submit(()->myFetchGet(fullRequest, ctx, url));
     }
-    
+
+
+    /**
+     * 使用week02的HttpClientDemo.java，改造fetchGet方法
+     * @param inbound
+     * @param ctx
+     * @param url
+     */
+    private void myFetchGet(final FullHttpRequest inbound, final ChannelHandlerContext ctx, final String url) {
+        FullHttpResponse response = null;
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+        CloseableHttpResponse httpResponse = null;
+        try {
+            httpResponse = httpClient.execute(httpGet);
+            System.out.println("statusCode:" + httpResponse.getStatusLine().getStatusCode());
+            if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                HttpEntity entity = httpResponse.getEntity();
+                response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(EntityUtils.toByteArray(entity)));
+                response.headers().set("Content-Type", "application/json");
+                response.headers().setInt("Content-Length", Integer.parseInt(httpResponse.getFirstHeader("Content-Length").getValue()));
+            }
+        } catch (IOException e) {
+            response = new DefaultFullHttpResponse(HTTP_1_1, NO_CONTENT);
+            e.printStackTrace();
+            exceptionCaught(ctx, e);
+        } finally {
+            try {
+                if (inbound != null) {
+                    if (!HttpUtil.isKeepAlive(inbound)) {
+                        ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+                    } else {
+                        //response.headers().set(CONNECTION, KEEP_ALIVE);
+                        ctx.write(response);
+                    }
+                }
+                ctx.flush();
+                if (httpResponse != null) {
+                    httpResponse.close();
+                }
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void fetchGet(final FullHttpRequest inbound, final ChannelHandlerContext ctx, final String url) {
         final HttpGet httpGet = new HttpGet(url);
         //httpGet.setHeader(HTTP.CONN_DIRECTIVE, HTTP.CONN_CLOSE);

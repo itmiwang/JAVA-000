@@ -1,1 +1,4 @@
-学习笔记
+1、整合你上次作业的 httpclient/okhttp
+	注释HttpOutboundHandler中原先的fetchGet方法，定义myFetchGet方法实现使用week02的HttpClientDemo.java改造fetchGet方法
+2、实现过滤器
+	在filter包下增加过滤器的实现类HttpRequestFilterHeaders，在HttpInboundHandler的channelRead方法中调用过滤器学习笔记

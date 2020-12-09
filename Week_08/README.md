@@ -285,13 +285,13 @@ PRIMARY KEY (`tx_no`)
 
 日志记录：
 
-<img src="/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-221627@2x.png" alt="WX20201209-221627@2x"  />
+<img src="https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-221627@2x.png" alt="WX20201209-221627@2x"  />
 
-![WX20201209-221715@2x](/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-221715@2x.png)
+![WX20201209-221715@2x](https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-221715@2x.png)
 
-![WX20201209-222416@2x](/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-222416@2x.png)
+![WX20201209-222416@2x](https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-222416@2x.png)
 
-![WX20201209-222427@2x](/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-222427@2x.png)
+![WX20201209-222427@2x](https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-222427@2x.png)
 
 
 
@@ -299,8 +299,8 @@ PRIMARY KEY (`tx_no`)
 
 访问http://localhost:56081/demo1/transfer?amount=2 
 
-![WX20201209-222530@2x](/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-222530@2x.png)
+![WX20201209-222530@2x](https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-222530@2x.png)
 
-![WX20201209-222540@2x](/Users/miwang/javaWeb/git-workspace/JAVA-000/Week_08/WX20201209-222540@2x.png)
+![WX20201209-222540@2x](https://github.com/itmiwang/JAVA-000/tree/main/Week_08/WX20201209-222540@2x.png)
 
 数据库中两个账户的account_balance字段值不变

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miwang.shardingsphere.mapper.POrderDao">
+  <resultMap id="BaseResultMap" type="com.miwang.shardingsphere.entity.POrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serial_no" jdbcType="BIGINT" property="serialNo" />
+    <result column="predict_sum" jdbcType="DECIMAL" property="predictSum" />
+    <result column="discounts_sum" jdbcType="DECIMAL" property="discountsSum" />
+    <result column="logistics_sum" jdbcType="DECIMAL" property="logisticsSum" />
+    <result column="actual_sum" jdbcType="DECIMAL" property="actualSum" />
+    <result column="pay_method_id" jdbcType="BIGINT" property="payMethodId" />
+    <result column="logistics_id" jdbcType="BIGINT" property="logisticsId" />
+    <result column="order_state" jdbcType="INTEGER" property="orderState" />
+    <result column="logistics_state" jdbcType="INTEGER" property="logisticsState" />
+    <result column="operator_id" jdbcType="BIGINT" property="operatorId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="operation_id" jdbcType="BIGINT" property="operationId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="logistics_time" jdbcType="TIMESTAMP" property="logisticsTime" />
+    <result column="success_time" jdbcType="TIMESTAMP" property="successTime" />
+    <result column="sign" jdbcType="INTEGER" property="sign" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, serial_no, predict_sum, discounts_sum, logistics_sum, actual_sum, pay_method_id, 
+    logistics_id, order_state, logistics_state, operator_id, remark, operation_id, create_time, 
+    change_time, logistics_time, success_time, sign
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from p_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.miwang.shardingsphere.entity.POrder" useGeneratedKeys="true">
+    insert into p_order (serial_no, predict_sum, discounts_sum, 
+      logistics_sum, actual_sum, pay_method_id, 
+      logistics_id, order_state, logistics_state, 
+      operator_id, remark, operation_id, 
+      create_time, change_time, logistics_time, 
+      success_time, sign)
+    values (#{serialNo,jdbcType=BIGINT}, #{predictSum,jdbcType=DECIMAL}, #{discountsSum,jdbcType=DECIMAL}, 
+      #{logisticsSum,jdbcType=DECIMAL}, #{actualSum,jdbcType=DECIMAL}, #{payMethodId,jdbcType=BIGINT}, 
+      #{logisticsId,jdbcType=BIGINT}, #{orderState,jdbcType=INTEGER}, #{logisticsState,jdbcType=INTEGER}, 
+      #{operatorId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{operationId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{changeTime,jdbcType=TIMESTAMP}, #{logisticsTime,jdbcType=TIMESTAMP}, 
+      #{successTime,jdbcType=TIMESTAMP}, #{sign,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.miwang.shardingsphere.entity.POrder" useGeneratedKeys="true">
+    insert into p_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serialNo != null">
+        serial_no,
+      </if>
+      <if test="predictSum != null">
+        predict_sum,
+      </if>
+      <if test="discountsSum != null">
+        discounts_sum,
+      </if>
+      <if test="logisticsSum != null">
+        logistics_sum,
+      </if>
+      <if test="actualSum != null">
+        actual_sum,
+      </if>
+      <if test="payMethodId != null">
+        pay_method_id,
+      </if>
+      <if test="logisticsId != null">
+        logistics_id,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="logisticsState != null">
+        logistics_state,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="operationId != null">
+        operation_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time,
+      </if>
+      <if test="successTime != null">
+        success_time,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=BIGINT},
+      </if>
+      <if test="predictSum != null">
+        #{predictSum,jdbcType=DECIMAL},
+      </if>
+      <if test="discountsSum != null">
+        #{discountsSum,jdbcType=DECIMAL},
+      </if>
+      <if test="logisticsSum != null">
+        #{logisticsSum,jdbcType=DECIMAL},
+      </if>
+      <if test="actualSum != null">
+        #{actualSum,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethodId != null">
+        #{payMethodId,jdbcType=BIGINT},
+      </if>
+      <if test="logisticsId != null">
+        #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsState != null">
+        #{logisticsState,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null">
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisticsTime != null">
+        #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null">
+        #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.miwang.shardingsphere.entity.POrder">
+    update p_order
+    <set>
+      <if test="serialNo != null">
+        serial_no = #{serialNo,jdbcType=BIGINT},
+      </if>
+      <if test="predictSum != null">
+        predict_sum = #{predictSum,jdbcType=DECIMAL},
+      </if>
+      <if test="discountsSum != null">
+        discounts_sum = #{discountsSum,jdbcType=DECIMAL},
+      </if>
+      <if test="logisticsSum != null">
+        logistics_sum = #{logisticsSum,jdbcType=DECIMAL},
+      </if>
+      <if test="actualSum != null">
+        actual_sum = #{actualSum,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethodId != null">
+        pay_method_id = #{payMethodId,jdbcType=BIGINT},
+      </if>
+      <if test="logisticsId != null">
+        logistics_id = #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsState != null">
+        logistics_state = #{logisticsState,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null">
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null">
+        success_time = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.miwang.shardingsphere.entity.POrder">
+    update p_order
+    set serial_no = #{serialNo,jdbcType=BIGINT},
+      predict_sum = #{predictSum,jdbcType=DECIMAL},
+      discounts_sum = #{discountsSum,jdbcType=DECIMAL},
+      logistics_sum = #{logisticsSum,jdbcType=DECIMAL},
+      actual_sum = #{actualSum,jdbcType=DECIMAL},
+      pay_method_id = #{payMethodId,jdbcType=BIGINT},
+      logistics_id = #{logisticsId,jdbcType=BIGINT},
+      order_state = #{orderState,jdbcType=INTEGER},
+      logistics_state = #{logisticsState,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      success_time = #{successTime,jdbcType=TIMESTAMP},
+      sign = #{sign,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectAll" resultType="com.miwang.shardingsphere.entity.POrder">
+    select * from p_order
+  </select>
+</mapper>

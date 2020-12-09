@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/discover-server/discover-server.iml" filepath="$PROJECT_DIR$/discover-server/discover-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn-hmily-tcc-demo.iml" filepath="$PROJECT_DIR$/learn-hmily-tcc-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn-hmily-tcc-demo1/learn-hmily-tcc-demo1.iml" filepath="$PROJECT_DIR$/learn-hmily-tcc-demo1/learn-hmily-tcc-demo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn-hmily-tcc-demo2/learn-hmily-tcc-demo2.iml" filepath="$PROJECT_DIR$/learn-hmily-tcc-demo2/learn-hmily-tcc-demo2.iml" />
+    </modules>
+  </component>
+</project>

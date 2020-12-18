@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/foreign-exchange-transactions-demo.iml" filepath="$PROJECT_DIR$/.idea/foreign-exchange-transactions-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foreign-exchange-transactions-demo-a/foreign-exchange-transactions-demo-a.iml" filepath="$PROJECT_DIR$/foreign-exchange-transactions-demo-a/foreign-exchange-transactions-demo-a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foreign-exchange-transactions-demo-b/foreign-exchange-transactions-demo-b.iml" filepath="$PROJECT_DIR$/foreign-exchange-transactions-demo-b/foreign-exchange-transactions-demo-b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foreign-exchange-transactions-demo-common/foreign-exchange-transactions-demo-common.iml" filepath="$PROJECT_DIR$/foreign-exchange-transactions-demo-common/foreign-exchange-transactions-demo-common.iml" />
+    </modules>
+  </component>
+</project>
